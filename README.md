@@ -1,46 +1,46 @@
-# data-collect
+# Estudo sobre APIs e Ingestão de Dados
 
-## Objetivo
+Este repositório contém um estudo abrangente sobre a coleta e o processamento de dados de APIs públicas, utilizando técnicas avançadas de engenharia de dados. O objetivo principal é demonstrar como realizar a ingestão de dados em diferentes formatos e como processá-los eficientemente usando Python e Spark.
 
-Este projeto realiza a coleta de informações sobre personagens do jogo Resident Evil a partir do site [Resident Evil Database](https://www.residentevildatabase.com/personagens/). O objetivo é extrair dados como informações básicas e aparições dos personagens, e salvar esses dados em diferentes formatos.
-## Conteúdo do Projeto
+O estudo explora diversas etapas de uma rotina completa de engenharia de dados, desde a coleta inicial até uma introdução ao processamento e armazenamento em camadas na nuvem.
 
-O projeto inclui um script Python que utiliza bibliotecas de scraping para buscar e processar informações de personagens. Os dados são extraídos e salvos em três formatos: CSV, Parquet e Pickle.
 
-### Dependências
+## Estrutura do Repositório
 
-- `requests` - Para fazer requisições HTTP.
-- `beautifulsoup4` - Para fazer parsing do HTML.
-- `tqdm` - Para exibir uma barra de progresso.
-- `pandas` - Para manipulação e armazenamento dos dados.
+O repositório está organizado da seguinte forma:
 
-### Funcionamento
+- **`JovemNerd/`**: Scripts para coletar e processar dados do [Jovem Nerd API](https://api.jovemnerd.com.br/wp-json/jovemnerd/v1/nerdcasts/).
+  - **`data/`**: Pasta contendo os dados coletados.
+    - **`episodios/`**: Subpastas para dados em formato JSON e Parquet.
+  - **`episodios.py`**: Script para coletar dados da API e salvá-los em formatos JSON e Parquet.
 
-1. **Requisição de Dados**: O script realiza uma requisição HTTP para a página principal de personagens e coleta os links para as páginas individuais de cada personagem.
-2. **Extração de Dados**: Para cada página de personagem, o script extrai:
-    - Informações básicas (nome, idade, etc.).
-    - Aparições do personagem em diferentes mídias.
-3. **Armazenamento**: Os dados extraídos são armazenados em três formatos:
-    - CSV (`dados_re.csv`)
-    - Parquet (`dados_re.parquet`)
-    - Pickle (`dados_re.pkl`)
+- **`Pokemon/`**: Scripts para coletar e processar dados da [Pokémon API](https://pokeapi.co/api/v2/pokemon/).
+  - **`collect.py`**: Script para coletar dados da API e salvá-los em formato JSON.
+  - **`pokemon_details.py`**: Script para processar dados coletados e obter detalhes dos Pokémon usando Spark.
 
-### Como Executar
+- **`ResidentEvil/`**: Scripts e dados relacionados a [Resident Evil Database](https://www.residentevildatabase.com/personagens/), incluindo arquivos CSV, Parquet e Pickle.
+  - **`collect.py`**: Script para coleta de dados.
+  - **`dados_re.csv`**: Dados em formato CSV.
+  - **`dados_re.parquet`**: Dados em formato Parquet.
+  - **`dados_re.pkl`**: Dados em formato Pickle.
 
-1. Instale as dependências necessárias:
-```bash
-pip install requests beautifulsoup4 tqdm pandas
-``` 
+- **`TabNews/`**: Scripts para coletar e processar dados da [Tab News API](https://www.tabnews.com.br/api/v1/contents/).
+  - **`basic_content.py`**: Script básico para coleta de dados.
+  - **`data/`**: Pasta contendo dados coletados.
+    - **`contents/`**: Subpastas para dados em formato JSON e Parquet.
+  - **`read_spark.py`**: Script para ler e processar dados usando Spark.
 
-2. Execute o script:
-```
-python collect.py
-```
+## Requisitos
 
-O script salvará os dados extraídos nos arquivos mencionados.
+- Python 3.x
+- Bibliotecas Python: `requests`, `pandas`, `pyspark`, `json`
+- Spark (para processamento de dados)
 
-### Arquivos Gerados
+## Como Usar
 
-- `dados_re.csv` - Arquivo CSV contendo os dados dos personagens.
-- `dados_re.parquet` - Arquivo Parquet com os mesmos dados.
-- `dados_re.pkl` - Arquivo Pickle com os dados.
+1. **Configurar Ambiente:**
+   - Instale as dependências necessárias usando `pip install -r requirements.txt`.
+
+2. **Executar Scripts:**
+   - Execute os scripts `basic_content.py`, `collect.py`, `pokemon_details.py` e `read_spark.py` para coletar e processar os dados.
+   - Todos estão estruturados em formatos de celulas, com o objetivo de auxiliar o desenvolvedor na escrita de código.
